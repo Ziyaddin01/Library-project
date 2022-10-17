@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> 
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<meta charset="utf-8">
+<title>Telebeler</title>
+<style>
+
+
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ 
+<link rel="stylesheet" type="text/css"
+href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+ 
+<script type="text/javascript" charset="utf8"
+src="https://cdn.dataTables.net/1.10.22/js/jquery.dataTables.js"></script>
+<script>
+$(document).ready(function() {
+$('#students-table').DataTable();
+});
+</script>
+</head>
+<body>
+<div th:replace="menu :: menu"></div>
+<div class="container-fluid">
+
+<a class="btn btn-success" th:href="@{/students/new}">Yeni Telebe</a>
+<a class="btn btn-primary" th:href="@{/home}">Esas sehife</a>
+<div style="height: 5px;"></div>
+<table id="students-table" class="table table-hover table-bordered">
+<thead><tr><th>ID</th><th>Ad</th><th>Soyad</th><th>Unvan</th><th>Nomresi</th><th>Emeliyyat</th></tr></thead>
+<tbody>
+<tr th:each="student : ${students}">
+<td th:text="${student.id}"></td>
+<td th:text="${student.name}"></td>
+<td th:text="${student.surname}"></td>
+<td th:text="${student.address}"></td>
+<td th:text="${student.phone}"></td>
+<td><a th:href="@{/students/delete/{id}(id=${student.id})}" class="btn btn-danger">Sil</a>
+<a th:href="@{/students/edit/{id}(id=${student.id})}" class="btn btn-primary">Redakte</a></td>
+</tr>
+</tbody>
+
+</table>
+</div>
+
+
+</body>
+</html>
